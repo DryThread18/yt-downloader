@@ -1,9 +1,9 @@
 {
-  "name": "yt-download",
+  "name": "yt-downloader",
   "version": "1.0.0",
-  "main": "server.js",  // or the main file you use to run the server
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",  // Ensure this matches the entry point of your app
+    "start": "node server.js",
     "dev": "node server.js"
   },
   "dependencies": {
