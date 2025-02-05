@@ -1,17 +1,13 @@
 {
-  "name": "yt-downloader",
+  "name": "yt-download",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",  // or the main file you use to run the server
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",  // Ensure this matches the entry point of your app
+    "dev": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "child_process": "^1.0.2",
-    "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.17.1",
+    "yt-dlp": "^2025.01.1"
   }
 }
