@@ -1,20 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const { exec } = require("child_process");
+const { exec } = require('child_process');
+const path = require('path');
 
-const app = express();
-app.use(cors());
+// Set the correct path to the yt-dlp.exe binary inside the 'bin' folder
+const ytDlpPath = path.join(__dirname, 'bin', 'yt-dlp.exe');  // Adjust if needed
 
-app.get("/download", (req, res) => {
-    const url = req.query.url;
-    if (!url) return res.status(400).json({ error: "No URL provided" });
+const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';  // Example URL
 
-    exec(`yt-dlp -f best -o - ${url}`, { maxBuffer: 1024 * 1024 * 10 }, (err, stdout, stderr) => {
-        if (err) return res.status(500).json({ error: stderr });
-        res.setHeader("Content-Disposition", 'attachment; filename="video.mp4"');
-        res.send(stdout);
-    });
+exec(`${ytDlpPath} ${url}`, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.error(`stderr: ${stderr}`);
 });
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
